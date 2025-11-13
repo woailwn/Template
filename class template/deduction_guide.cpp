@@ -53,7 +53,9 @@ namespace Union
     template <typename T>
     Point(T, T) -> Point<T>;
 
+    // Point(char const*,char const*)->Point<std::string>
 };
+
 int main()
 {
     Base::Container c1(42);      // 推导为 Container<int>
@@ -62,12 +64,12 @@ int main()
     std::cout << c1.get() << std::endl;
     std::cout << c2.get() << std::endl; // 可以正常输出字符串
 
-    Union::Point p1{1, 2};     // 推导为 Point<int>
+    Union::Point p1{1, 2};     // 推导为 Point<int> 
     Union::Point p2{1.5, 2.5}; // 推导为 Point<double>
+    Union::Point p3{"hello","www"};
 
     std::cout << "p1: (" << p1.x << ", " << p1.y << ")" << std::endl;
     std::cout << "p2: (" << p2.x << ", " << p2.y << ")" << std::endl;
 
-    return 0;
     return 0;
 }
